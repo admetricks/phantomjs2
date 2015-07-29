@@ -24,7 +24,11 @@ var util = require('util')
 var which = require('which')
 
 var cdnUrl = process.env.PHANTOMJS_CDNURL || 'https://github.com/admetricks/phantomjs/releases/download/'
-var downloadUrl = cdnUrl + 'v' + helper.version + '/phantomjs-' + helper.version + '-'
+var downloadUrl = cdnUrl
+if (process.platform === 'linux' && process.arch === 'x64') {
+  downloadUrl += 'v'
+}
+downloadUrl += helper.version + '/phantomjs-' + helper.version + '-'
 
 var originalPath = process.env.PATH
 
